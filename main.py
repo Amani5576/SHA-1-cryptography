@@ -140,7 +140,7 @@ def main():
         
         print()
         print("digest = %s" % digest)
-        
+        print()
     elif typ == 2:
         #Unreversable cryptography of message
         digest = digest_query()
@@ -162,12 +162,10 @@ def main():
         
         if method == 1:
             
-            print('''
-        please wait as messages of length %d are being tested via brute force method''' % p_len)
+            print('please wait as messages of length %d are being tested via brute force method''' % p_len)
+            print()
             
-            BF(digest, p_len, rep, char_s)
-            end = t.time()
-            print('time taken = %s' % show_time_taken((end-start)))
+            BF(digest, p_len, rep, char_s, start)
         
         elif method == 2:
             

@@ -1,4 +1,4 @@
-# Cryptography with the use of SHA_1
+# SHA-1 Cryptographic hashing and hash-cracking
 
 1. Takes user input of a passcode, passphrase or short message and converts it to a digest of 40 hexadecimal digits.
 2. Returns the message/passcode/passphrase from any given digest from two different methods
