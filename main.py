@@ -142,23 +142,13 @@ def main():
         print("digest = %s" % digest)
         print()
     elif typ == 2:
-        #Unreversable cryptography of message
-        digest = digest_query()
-    
-        #choosing between methods provided
-        method = get_method()
         
-        #number of times a letter can repeat
-        rep = rep_query() 
-        
-        #length of password
-        p_len = get_pw_len()
-        
-        #get list of possible charcaters that can be in message
-        char_s = get_char_s()
-        
-        #start timer
-        start = t.time() 
+        digest = digest_query() #Unreversable cryptography of message
+        method = get_method() #choosing between methods provided
+        rep = rep_query() #number of times a letter can repeat
+        p_len = get_pw_len() #length of password
+        char_s = get_char_s() #get list of possible charcaters
+        start = t.time() #start timer
         
         if method == 1:
             
