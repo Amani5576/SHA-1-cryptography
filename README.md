@@ -12,14 +12,13 @@ The following also occurs:
 1. Padding of the message into a 512-bit block
 2. Forming a message schedule by further expanding the given message into 80 sub-blocks
 3. Functions for logical bitwise operation, bit-rotation and bit addition.
-Bit addition may lead to overflow and extra highest-signifact-bits are ignored. 
-the AND funtion for bitwise operation takes in multiple bit-numbers but the order of the arguments are not commutative. So the function as seen below may not always be true:
+Bit addition may lead to overflow and extra highest-signifact-bits are ignored.
+4. ```ROUND(...)``` handles each round of encrypting the message further, taking into account the changing of the function F_k and constant K for each 20 rounds; as seen in the diagram below:
 
-    `AND(A,B,C) == AND(B,A,C)`
+<img src="./img/Drawing_of_round.jpeg">
 
-4. ```ROUND(...)``` handles each round of encrypting the message further, taking into account the changing of the function f_k and constant K for each 20 rounds.
-5. ```get_digest(...)``` uses all the above functions in unison to give the 40 hexadecimal digits of the given message.
-6. A function that takes in seconds of running a program and gives an output of that time taken in a specific format: `show_time_taken(seconds)`
+5. ```get_digest(...)``` uses all the above functions in unison to give the 40 hexadecimal digits (a.k.a the digest) of the given message.
+6. A function that prints a specific format of time taken to run either brute force or random method: `show_time_taken(seconds)`
 
 The file can be run by running ```python ./SHA_1.py``` on any terminal emulator on a computer with Python 3 installed.
 
@@ -31,6 +30,7 @@ The main function `BF(...)` takes in:
 2. `p_len` -> Suspected length of the original passphrase
 3. `rep` -> Suspected maximum repetition of letters within the original message.
 4. `char_s` -> List of all possible characters suspected to have been in the original message.
+5. `start_time` ->  Current time in seconds since the Epoch (to be used in printing time taken for code to run; `show_time_taken(seconds)`)
 
 The function ``brute_force(...)`` uses recursion to produce each instance of a word. The largest number of passphrases to be tested is generally:
     (length of char_s)^p_len
@@ -43,7 +43,7 @@ Max words tested =   (3)^4 = 81
 
 However if `p_len = 10` and `char_s = list of all lowercase alphabets`
 
-Max words tested = (10)^26, which takes a much larger amount of time and this is why another alternative is given to the user (see Random.py)
+Max words tested = (10)^26, which takes a larger amount of time. Asking the user for more specific searches such as guessing length of original message may be used to reduce the umber of words/sentences being tested. A better but riskier alternative would is given to the user (see Random.py)
 
 The file can be run by running ```python ./BruteForce.py``` on any terminal emulator on a computer with Python 3 installed.
 

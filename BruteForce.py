@@ -12,12 +12,12 @@ import sys
 #uses recursion
 def brute_force(digest, p_len, rep, word, char_s, alph_len, **kwargs):
 
-    n = kwargs['n']
-    start = kwargs['start']
+    # n = kwargs['n']
     
     def _brute_force(digest, p_len, rep, word, char_s, alph_len):
         
         count = kwargs['count']
+        word_found = False
         
         #if length isnt same as password length
         if len(word) != p_len: 
@@ -36,6 +36,9 @@ def brute_force(digest, p_len, rep, word, char_s, alph_len, **kwargs):
             return
     
         for i in range(alph_len):
+            if word_found == True:
+                break
+            
             if word[-1] == char_s[-1]:
                 return
     
@@ -60,38 +63,40 @@ def brute_force(digest, p_len, rep, word, char_s, alph_len, **kwargs):
             #only focus on words that are as long as the password
             if len(word) == p_len:
                 #no need for heavy printing
-                if count % n == 0: print(word)
+                # if count % n == 0: print(word)
         
                 #get digest of that word with SHA-1 hashing
                 #test if digests match
                 if digest == get_digest(word):
                     print("Password is: %s" % word)
                     end = t.time()
-                    show_time_taken(end-start)
-                    sys.exit()
+                    show_time_taken(end-kwargs['start'])
+                    return True
+                    
                 
             #recurse
-            brute_force(digest, p_len, rep, word, 
-                        char_s, alph_len, **kwargs)
+            word_found = _brute_force(digest, p_len, rep, word, 
+                        char_s, alph_len)
             
-        return
+        return word_found
     
     _brute_force(digest, p_len, rep, word, char_s, alph_len)
 
-def BF(d, p_len, rep, char_s, start_time):
+def BF(digest, p_len, rep, char_s, start_time):
     
-    #Digest of the very word being investigated
-    digest = d.upper() 
+    #digest = Digest of the very word being investigated
     
     count = 0
-    n = 150 #Show every output n where 0,1,2,...n... n+1...
+    
+    #Show every '150i'th word where i is a +ve incrementing integer
+    # n = 150 
 
     word = ''
     alph_len = len(char_s) #Alphabet length
     
     #start-up the brute force
-    brute_force(digest, p_len, rep, word, char_s, alph_len,
-                n = n, start = start_time, count = count)
+    word_found = brute_force(digest, p_len, rep, word, char_s, alph_len, start = start_time
+                , count = count)
     
-    #if system exit doest take place due to finding a word:
-    print('No match Found') 
+    if word_found == False:
+        print('No match Found') 

@@ -4,7 +4,7 @@ Created on Thu Sep 14 02:23:33 2023
 
 @author: Amani
 """
-from SHA_1 import get_digest, show_time_taken
+from SHA_1 import get_digest_R, show_time_taken
 from random import random as rand
 # import string as STR
 import time as t
@@ -35,11 +35,10 @@ def make_word(char_s, rep, len_char_s, p_len):
         
     return word
 
-def R(d, p_len, rep, char_s, start_time):
+def R(digest, p_len, rep, char_s, start_time):
     start = start_time
-    #Digest of the very word being investigated
-    digest = d.upper() #get_digest('comefindme')
-    #'950bfe587a64c98e435d811a6c43097ec6d2546d'.upper()
+    #digest = Digest of the very word being investigated
+    #e.g. '950bfe587a64c98e435d811a6c43097ec6d2546d'
     
     # p_len#10 #password length 
     # char_s #all different character variables
@@ -51,7 +50,7 @@ def R(d, p_len, rep, char_s, start_time):
         
         word = make_word(char_s, rep, len_char_s, p_len)
         # print(word)
-        if get_digest(word) == digest:
+        if get_digest_R(word) == digest:
             found = True
             print("Password is: %s" % word)
             end = t.time() #end timer
