@@ -13,7 +13,7 @@ The following also occurs:
 2. Forming a message schedule by further expanding the given message into 80 sub-blocks
 3. Functions for logical bitwise operation, bit-rotation and bit addition.
 Bit addition may lead to overflow and extra highest-signifact-bits are ignored.
-4. ```ROUND(...)``` handles each round of encrypting the message further, taking into account the changing of the function F_k and constant K for each 20 rounds; as seen in the diagram below:
+4. ```ROUND(...)``` handles each round of encrypting the message further, taking into account the changing of the function F_t and constant K_t for each 20 rounds; as seen in the diagram below: (t represents a stage out of a total of 4 stages, thus a total of 80 rounds)
 
 <img src="./img/Drawing_of_round.jpeg">
 
