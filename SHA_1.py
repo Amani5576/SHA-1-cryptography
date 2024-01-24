@@ -8,28 +8,8 @@ Created on Sat Sep  9 17:50:19 2023
 #from https://realpython.com/lru-cache-python/ __________________________
 #Allows me to use lru_cache in limitations of time rather than just space
 #No maxsize, but expiration date to evict item in cache is 3 hours
-from functools import lru_cache, wraps
-from datetime import datetime, timedelta
+from functools import lru_cache
 import hashlib
-
-def timed_lru_cache(seconds: int, maxsize: int = 128):
-    def wrapper_cache(func):
-        func = lru_cache(maxsize=maxsize)(func)
-        func.lifetime = timedelta(seconds=seconds)
-        func.expiration = datetime.utcnow() + func.lifetime
-
-        @wraps(func)
-        def wrapped_func(*args, **kwargs):
-            if datetime.utcnow() >= func.expiration:
-                func.cache_clear()
-                func.expiration = datetime.utcnow() + func.lifetime
-
-            return func(*args, **kwargs)
-
-        return wrapped_func
-
-    return wrapper_cache
-# ____________________________________________________________
 
 def get_bitsize(*args):
     a = max(args) #get maximum value
@@ -267,10 +247,9 @@ def get_digest(message): #Basically doing SHA-1
     else: #otherwise use my own version of sha_1
         return my_get_digest(message)
 
-#cache expiry is within 1 hour
 #Created only for usage in Random.py due 
 #to replication of messages that are being tested
-@timed_lru_cache(seconds = 3600, maxsize = None)
+@lru_cache(maxsize = 100000)
 def get_digest_R(message):
     return get_digest(message)
 

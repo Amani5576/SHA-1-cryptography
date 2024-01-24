@@ -7,7 +7,6 @@ Created on Mon Sep  11 6:29:57 2023
 
 from SHA_1 import get_digest, show_time_taken
 import time as t
-import sys
 
 #uses recursion
 def brute_force(digest, p_len, rep, word, char_s, alph_len, **kwargs):
@@ -80,7 +79,7 @@ def brute_force(digest, p_len, rep, word, char_s, alph_len, **kwargs):
             
         return word_found
     
-    _brute_force(digest, p_len, rep, word, char_s, alph_len)
+    return _brute_force(digest, p_len, rep, word, char_s, alph_len)
 
 def BF(digest, p_len, rep, char_s, start_time):
     

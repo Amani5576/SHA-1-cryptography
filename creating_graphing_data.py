@@ -10,9 +10,6 @@ import time as t
 from BruteForce import BF
 from Random import R
 
-methods = ['BF','R']
-# methods = ['R', 'BF']
-
 char_s = STR.ascii_letters
 len_char_s = len(char_s)
 
@@ -46,13 +43,13 @@ def for_graphing(digest, method, rep, p_len, char_s):
             #end of time and time taken is handled within Random.py file.
             
 rep = 1
-
+methods = ['BF', 'R']
 for ind, digest in enumerate(digests):
     for method in methods:
-        print('type: ' + method)
-        print('digest = ' + digest)
-        p_len = len(word[ind])
-        print('password length = ' + str(p_len))
-        for_graphing(digest, method , rep, p_len, char_s)
-        print()
-        break
+        if (method == 'BF' and ind >= 6) or (method == 'R' and ind >= 5):
+            print('type: ' + method)
+            print('digest = ' + digest)
+            p_len = len(word[ind])
+            print('password length = ' + str(p_len))
+            for_graphing(digest, method , rep, p_len, char_s)
+            print()
