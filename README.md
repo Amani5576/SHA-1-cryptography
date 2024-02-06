@@ -64,6 +64,45 @@ Random method has the disadvantage of testing a word it has made before. Thus a 
 The file can be run by running ```python ./Random.py``` on any terminal emulator on a computer with Python 3 installed.
 
 ## main.py file
-This file guides the user with a few questions and  utilizes the preceding files discussed above in order to produce either  digest from  a given message or vice versa.
+### Overview
+This Python script simulates the process of generating and reversing message digests using various methodologies. It provides functionalities to create message digests from input messages and to reverse-engineer the original messages from given digests. Additionally, it includes options for brute-force testing and random message generation to decrypt message digests.
+
+### Features Include
+1. Creation of Message Digests from Input Messages
+2. Reversal of Message Digests into Original Messages
+3. Brute-Force Testing Methodology for Decrypting Message Digests
+4. Random Message Generation Methodology for Decrypting Message Digests
+
+### Usage Instructions
+
+#### Creating Message Digests from Input Messages:
+- Select option `1` when prompted.
+- Input the message when prompted.
+- The script will generate the corresponding message digest.
+
+#### Reversing Message Digests into Original Messages:
+- Select option `2` when prompted.
+- Input the message digest when prompted.
+- Choose the methodology for decryption:
+   - `1`: Brute-Force Testing
+   - `2`: Random Message Generation
+- Provide additional information as prompted:
+   - Number of times a character can repeat in the message.
+   - Length of the password/message.
+   - List of possible characters in the message.
+
+#### Dependencies:
+- Python 3.x
+- Libraries:
+   - `string`: For handling string characters.
+   - `time`: For time-related operations.
+   - Custom modules: `SHA_1`, `BruteForce`, `Random` (provided in the repository).
+
+### Running the Script:
+- Execute the script `main.py`.
+- Follow the on-screen prompts to select the desired functionality and provide necessary inputs.
+
+### Note:
+Ensure that all required custom modules (`SHA_1`, `BruteForce`, `Random`) are present in the same directory as the main script (main.py).
 
 The file can be run by running ```python ./main.py``` on any terminal emulator on a computer with Python 3 installed.
